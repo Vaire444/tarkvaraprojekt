@@ -1,56 +1,71 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+    <v-card>
+      <v-app-bar dense>
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+        <v-toolbar-title>Kalkulaatorid</v-toolbar-title>
+      </v-app-bar>
 
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <HelloWorld />
-    </v-main>
+      <v-main>
+        <v-container fluid>
+          <!-- Siia tuleb lisada routeri lingid iga kalkulaatori jaoks -->
+          <!-- <div id="app">
+            <TheNavigation /> -->
+          <div>
+            <router-link to="/bmicalculator">KMI Kalkulaator</router-link> |
+            <router-link to="/wagecalculator">Palgakalkulaator</router-link> |
+            <router-link to="/fuelcalculator">Kütusekalkulaator</router-link>
+            <router-view />
+          </div>
+        </v-container>
+      </v-main>
+    </v-card>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+// import TheNavigation from "@/components/TheNavigation";
+// export default {
+//   components: {
+//     TheNavigation,
+//   },
+// };
 
-export default {
-  name: "App",
+// import HelloWorld from "./components/HelloWorld";
 
-  components: {
-    HelloWorld
-  },
+// export default {
+//   name: "App",
 
-  data: () => ({
-    //
-  })
-};
+//   components: {
+//     HelloWorld,
+//   },
+
+//   data: () => ({
+//     //
+//   }),
+// };
+//
 </script>
+
+<style>
+#app {
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+#nav {
+  padding: 30px;
+}
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+  padding: 0 10px;
+}
+
+#nav a.router-link-exact-active {
+  color: rgb(198, 199, 109);
+}
+</style>
