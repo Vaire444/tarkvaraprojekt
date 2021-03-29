@@ -1,5 +1,5 @@
 <template>
-  <v-card class="e4" elevation="24" shaped outlined>
+  <v-card class="e4 mt-8" elevation="24" shaped outlined>
     <v-card-title><h3>Kütusekalkulaator</h3></v-card-title>
     <v-card-title><b>Lähteandmed</b></v-card-title>
     <v-container fluid>
