@@ -4,7 +4,9 @@
     <v-responsive height="100px"
       ><v-card-text>
         Sinu kehamassiindeks kaalu <b>{{ weight }} kg </b> ja pikkuse
-        <b>{{ height }} cm</b> juures on {{ bmi }}<br /><br />
+        <b>{{ height }} cm</b> juures on <b>{{ bmi }} </b><br /><br />
+
+        <h3>{{ weightGroup }}</h3>
       </v-card-text>
     </v-responsive>
     <br /><br />
@@ -15,39 +17,24 @@
             <v-slider
               v-model="weight"
               v-on:change="bmiCalc"
-              :min="1"
+              :min="25"
               :max="255"
               label="Kehakaal"
               class="align-center"
               thumb-label="always"
             >
-              <!-- <template v-slot:append>
-                <v-text-field
-                  v-model="weight"
-                  class="mt-0 pt-0"
-                  style="width: 60px"
-                ></v-text-field>
-              </template> -->
             </v-slider>
           </v-col>
-
           <v-col cols="12">
             <v-slider
               v-model="height"
               v-on:change="bmiCalc"
-              :min="1"
+              :min="25"
               :max="255"
               label="Pikkus"
               class="align-center"
               thumb-label="always"
             >
-              <!-- <template v-slot:append>
-                <v-text-field
-                  v-model="height"
-                  class="mt-0 pt-0"
-                  style="width: 60px"
-                ></v-text-field>
-              </template> -->
             </v-slider>
           </v-col>
         </v-row>
@@ -59,15 +46,16 @@
 <script>
 import { mapActions, mapState } from "vuex";
 export default {
-  name: "App",
+  name: "BMICalculator",
   data: () => ({
     weight: 0,
     height: 0,
     bmi: 0,
+    weightGroup: "",
   }),
 
   computed: {
-    ...mapState(["Weight", "Height"]),
+    ...mapState(["setWeightValue", "setHeightValue"]),
     result() {
       return this.Weight;
     },
@@ -77,14 +65,37 @@ export default {
     ...mapActions(["Weight", "Height"]),
 
     bmiCalc() {
-      console.log("funktsion algas");
-      let weight = parseFloat(this.weight);
-      console.log(weight);
-      let height = parseFloat(this.height);
-      console.log(height);
-      let totalKMI = weight / Math.pow(height) / 100;
+      let totalKMI =
+        parseFloat(this.weight) / Math.pow(parseFloat(this.height) / 100, 2);
+      console.log(this.weight);
       console.log(totalKMI);
-      this.bmi = totalKMI.toFixed(2);
+      let bmi = totalKMI.toFixed(2);
+      this.bmi = bmi;
+
+      let weightGroup = this.bmi;
+      if (weightGroup > 59.99) {
+        return (this.weightGroup = "Sul on ülekaal!	Rasvumise 5. klass");
+      } else if (weightGroup > 49.99) {
+        return (this.weightGroup = "Sul on ülekaal!	Rasvumise 5. klass");
+      } else if (weightGroup > 44.99) {
+        return (this.weightGroup = "Sul on ülekaal!	Rasvumise 4. klass");
+      } else if (weightGroup > 39.99) {
+        return (this.weightGroup = "Sul on ülekaal!	Rasvumise 3. klass");
+      } else if (weightGroup > 34.99) {
+        return (this.weightGroup = "Sul on ülekaal! Rasvumise 2. klass");
+      } else if (weightGroup > 29.99) {
+        return (this.weightGroup = "Sul on ülekaal! Rasvumise 1. klass");
+      } else if (weightGroup > 24.99) {
+        return (this.weightGroup = "Sul on ülekaal");
+      } else if (weightGroup > 18.49) {
+        return (this.weightGroup = "Oled normaalkaalus");
+      } else if (weightGroup > 15.99) {
+        return (this.weightGroup = "Sul on kerge alakaal");
+      } else if (weightGroup > 14.99) {
+        return (this.weightGroup = "Sul on keskmine alakaal");
+      } else {
+        return (this.weightGroup = "Sul on tõsine alakaal");
+      }
     },
   },
 
@@ -102,11 +113,5 @@ export default {
 .e4 {
   width: 800px;
   margin: auto;
-}
-.red {
-  color: red;
-}
-.green {
-  color: green;
 }
 </style>

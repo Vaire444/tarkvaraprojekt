@@ -5,9 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    Weight: 47,
-    Height: 162,
-    bmi: 40,
+    Weight: 50,
+    Height: 150,
+    bmi: 22.22,
     weightGroup: "Oled nomaalkaalus",
   },
   mutations: {
