@@ -5,7 +5,6 @@
         <h1 class="display-2 font-weight-bold mb-3">
           {{ msg }}
         </h1>
-        components.helloworld.vue<!-- <p>{{ add(5, 10) }}</p> -->
       </v-col>
     </v-row>
   </v-container>
