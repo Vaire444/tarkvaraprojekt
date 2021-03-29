@@ -2,9 +2,11 @@
   <v-app>
     <v-card>
       <v-app-bar dense>
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
         <v-toolbar-title>Kalkulaatorid</v-toolbar-title>
+
+        <v-spacer></v-spacer>
+
+        <v-btn to="/">Avaleht</v-btn>
       </v-app-bar>
 
       <v-main class="my-16">
@@ -41,16 +43,12 @@
 //     TheNavigation,
 //   },
 // };
-
 // import HelloWorld from "./components/HelloWorld";
-
 // export default {
 //   name: "App",
-
 //   components: {
 //     HelloWorld,
 //   },
-
 //   data: () => ({
 //     //
 //   }),
@@ -74,11 +72,9 @@
   color: #2c3e50;
   padding: 0 10px;
 }
-
 #nav a.router-link-exact-active {
   color: rgb(198, 199, 109);
 }
-
 .e4 {
   width: 500px;
   margin: auto;

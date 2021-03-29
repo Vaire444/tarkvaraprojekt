@@ -19,7 +19,7 @@
               v-on:change="bmiCalc"
               :min="25"
               :max="255"
-              label="Kehakaal"
+              label="Kehakaal(kg)"
               class="align-center"
               thumb-label="always"
             >
@@ -31,7 +31,7 @@
               v-on:change="bmiCalc"
               :min="25"
               :max="255"
-              label="Pikkus"
+              label="Pikkus(cm)"
               class="align-center"
               thumb-label="always"
             >
@@ -74,7 +74,7 @@ export default {
 
       let weightGroup = this.bmi;
       if (weightGroup > 59.99) {
-        return (this.weightGroup = "Sul on ülekaal!	Rasvumise 5. klass");
+        return (this.weightGroup = "Sul on ülekaal!	Rasvumise 6. klass");
       } else if (weightGroup > 49.99) {
         return (this.weightGroup = "Sul on ülekaal!	Rasvumise 5. klass");
       } else if (weightGroup > 44.99) {
