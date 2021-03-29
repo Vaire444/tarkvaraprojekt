@@ -4,12 +4,13 @@
     <v-card-title><h3>Kütusekulu kalkulaator</h3></v-card-title>
     <v-card-title><b>Lähteandmed</b></v-card-title>
     <v-container fluid>
-      <v-row align="left">
+      <v-row>
         <v-col cols="12" sm="4">
           <v-checkbox
             v-model="checkDistance"
             label="Teekonna pikkus"
             hide-details
+            v-on:change="function1"
           ></v-checkbox>
         </v-col>
 
@@ -21,6 +22,7 @@
             dense
             solo
             outlined
+            v-on:change="function2"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="4">
@@ -29,6 +31,8 @@
             v-model="unitLenght"
             v-bind:items="['Kilomeeter(km)', 'miil(ml)']"
             hide-details
+            solo
+            v-on:change="function3"
           ></v-select>
         </v-col>
 
@@ -37,6 +41,7 @@
             v-model="checkAvgFuelConsump"
             label="Keskmine kütusekulu"
             hide-details
+            v-on:change="function4"
           ></v-checkbox>
         </v-col>
         <v-col cols="12" sm="4">
@@ -47,6 +52,7 @@
             dense
             solo
             outlined
+            v-on:change="function5"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="4">
@@ -55,6 +61,8 @@
             v-model="unitLenghtAmount"
             v-bind:items="['liitrit/ 100 km', 'liitrit/ 100 miili']"
             hide-details
+            solo
+            v-on:change="function6"
           ></v-select>
         </v-col>
         <v-col cols="12" sm="4">
@@ -62,6 +70,7 @@
             v-model="checkFuelAmount"
             label="Kütuse kogus"
             hide-details
+            v-on:change="function7"
           ></v-checkbox>
         </v-col>
         <v-col cols="12" sm="4">
@@ -72,6 +81,7 @@
             dense
             solo
             outlined
+            v-on:change="function8"
           ></v-text-field>
         </v-col>
         <div cols="12" sm="4">`</div>
@@ -80,6 +90,7 @@
             v-model="checkFuelPrice"
             label="Kütuseühiku hind"
             hide-details
+            v-on:change="function9"
           ></v-checkbox>
         </v-col>
         <v-col cols="12" sm="4">
@@ -90,17 +101,19 @@
             dense
             solo
             outlined
+            v-on:change="function10"
           ></v-text-field>
         </v-col>
       </v-row>
 
       <v-card-title><b>Tulemus</b></v-card-title>
-      <v-row class="align-left">
+      <v-row>
         <v-col cols="12" sm="4">
           <v-card-text class="fs">Kütusekulu maksumus </v-card-text>
         </v-col>
         <v-col cols="12" sm="4">
           <v-text-field
+            v-model="totalFuelCostValue"
             class="pa-6 my-n6 pr-3"
             label="Kütusekulu maksumus"
             solo
@@ -124,6 +137,7 @@ export default {
     avgFuelConsumpValue: 0,
     fuelAmountValue: 0,
     fuelPriceValue: 0,
+    totalFuelCostValue: 100,
   }),
 };
 

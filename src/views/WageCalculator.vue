@@ -4,7 +4,7 @@
       <v-card-title><h3>Palgakalkulaator</h3></v-card-title>
       <v-card-title><b>Lähteandmed</b></v-card-title>
       <v-container fluid>
-        <v-row align="left">
+        <v-row>
           <v-col cols="12" sm="4">
             <v-checkbox
               v-model="ex4"
@@ -93,7 +93,7 @@
         </v-row>
 
         <v-card-title><b>Tulemus</b></v-card-title>
-        <v-row class="align-left">
+        <v-row>
           <v-col cols="12" sm="4">
             <v-card-text class="fs">Kütusekulu maksumus </v-card-text>
           </v-col>

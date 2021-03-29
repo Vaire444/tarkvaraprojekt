@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
 export default {
   name: "BMICalculator",
   data: () => ({
@@ -54,21 +53,13 @@ export default {
     weightGroup: "",
   }),
 
-  computed: {
-    ...mapState(["setWeightValue", "setHeightValue"]),
-    result() {
-      return this.Weight;
-    },
-  },
+  computed: {},
 
   methods: {
-    ...mapActions(["Weight", "Height"]),
-
     bmiCalc() {
       let totalKMI =
         parseFloat(this.weight) / Math.pow(parseFloat(this.height) / 100, 2);
-      console.log(this.weight);
-      console.log(totalKMI);
+
       let bmi = totalKMI.toFixed(2);
       this.bmi = bmi;
 
@@ -100,7 +91,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.$store.state);
     this.weight = this.$store.getters.Weight;
     this.height = this.$store.getters.Height;
     this.bmi = this.$store.getters.bmi;
