@@ -1,5 +1,5 @@
 <template>
-  <div cols="12" sm="6">
+  <div cols="12" sm="6" class="wagecalculator">
     <v-card class="e4 mt-8" elevation="24" shaped outlined>
       <v-card-title><h3>Palgakalkulaator</h3></v-card-title>
       <v-card-title><b>Lähteandmed</b></v-card-title>
