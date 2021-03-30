@@ -1,46 +1,48 @@
 <template>
-  <v-card class="e4 mt-8" elevation="24" shaped outlined>
-    <v-card-title><h3>Kehamassiindeksi kalkulaator</h3></v-card-title>
-    <v-responsive height="100px"
-      ><v-card-text>
-        Sinu kehamassiindeks kaalu <b>{{ weight }} kg </b> ja pikkuse
-        <b>{{ height }} cm</b> juures on <b>{{ bmi }} </b><br /><br />
+  <div class="bmicalculator">
+    <v-card class="e4 mt-8" elevation="24" shaped outlined>
+      <v-card-title><h3>KMI kalkulaator</h3></v-card-title>
+      <v-responsive height="100px"
+        ><v-card-text>
+          Sinu kehamassiindeks kaalu <b>{{ weight }} kg </b> ja pikkuse
+          <b>{{ height }} cm</b> juures on <b>{{ bmi }} </b><br /><br />
 
-        <h3>{{ weightGroup }}</h3>
+          <h3>{{ weightGroup }}</h3>
+        </v-card-text>
+      </v-responsive>
+      <br /><br />
+      <v-card-text>
+        <v-container fluid>
+          <v-row>
+            <v-col cols="12">
+              <v-slider
+                v-model="weight"
+                v-on:change="bmiCalc"
+                :min="25"
+                :max="255"
+                label="Kehakaal(kg)"
+                class="align-center"
+                thumb-label="always"
+              >
+              </v-slider>
+            </v-col>
+            <v-col cols="12">
+              <v-slider
+                v-model="height"
+                v-on:change="bmiCalc"
+                :min="25"
+                :max="255"
+                label="Pikkus(cm)"
+                class="align-center"
+                thumb-label="always"
+              >
+              </v-slider>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-card-text>
-    </v-responsive>
-    <br /><br />
-    <v-card-text>
-      <v-container fluid>
-        <v-row>
-          <v-col cols="12">
-            <v-slider
-              v-model="weight"
-              v-on:change="bmiCalc"
-              :min="25"
-              :max="255"
-              label="Kehakaal(kg)"
-              class="align-center"
-              thumb-label="always"
-            >
-            </v-slider>
-          </v-col>
-          <v-col cols="12">
-            <v-slider
-              v-model="height"
-              v-on:change="bmiCalc"
-              :min="25"
-              :max="255"
-              label="Pikkus(cm)"
-              class="align-center"
-              thumb-label="always"
-            >
-            </v-slider>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card-text>
-  </v-card>
+    </v-card>
+  </div>
 </template>
 
 <script>
