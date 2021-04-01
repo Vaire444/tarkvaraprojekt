@@ -1,30 +1,27 @@
 <template>
   <nav>
-    <v-toolbar flat app>
+    <v-app-bar flat app>
       <v-app-bar-nav-icon
-        class="grey--text"
+        color="lime darken-3"
+        class="lime darken-3--text"
         @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon>
-      <v-toolbar-title class="grey--text">
+      <v-toolbar-title class="lime darken-3--text">
         <span>Kalku</span>
         <span class="font-weight-light">laator</span>
       </v-toolbar-title>
-    </v-toolbar>
+    </v-app-bar>
     <v-navigation-drawer app v-model="drawer" absolute temporary>
-      <!-- <v-list nav dense>
-        <v-list-item-group
-          v-model="group"
-          active-class="deep-purple--text text--accent-4"
-        > -->
       <v-list nav dense>
         <v-list-item
           v-for="(link, i) in links"
           :key="i"
           router
           :to="link.route"
+          color="lime darken-3"
         >
           <v-list-item-icon>
-            <v-icon>{{ link.icon }}</v-icon>
+            <v-icon color="lime darken-3">{{ link.icon }}</v-icon>
           </v-list-item-icon>
           <v-list-item-title>{{ link.text }}</v-list-item-title>
         </v-list-item>
@@ -55,6 +52,7 @@ export default {
         text: "Palgakalkulaator",
         route: "/wagecalculator",
       },
+      { icon: "mdi-clock", text: "Test", route: "/test" },
     ],
   }),
 

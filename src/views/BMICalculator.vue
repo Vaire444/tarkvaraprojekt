@@ -1,13 +1,19 @@
 <template>
   <div class="bmicalculator">
-    <v-card class="e4 mt-8" elevation="24" shaped outlined>
-      <v-card-title><h3>KMI kalkulaator</h3></v-card-title>
-      <v-responsive height="100px"
+    <v-card class="e4 mt-8 lime lighten-5" elevation="24" shaped outlined>
+      <v-card-title class="lime darken-2"
+        ><h3>KMI kalkulaator</h3></v-card-title
+      >
+      <v-responsive height="150px"
         ><v-card-text>
-          Sinu kehamassiindeks kaalu <b>{{ weight }} kg </b> ja pikkuse
-          <b>{{ height }} cm</b> juures on <b>{{ bmi }} </b><br /><br />
+          <br />
+          <h2>
+            Sinu kehamassiindeks kaalu {{ weight }} kg ja pikkuse
+            {{ height }} cm juures on {{ bmi }}
+          </h2>
+          <br />
 
-          <h3>{{ weightGroup }}</h3>
+          <h2>{{ weightGroup }}</h2>
         </v-card-text>
       </v-responsive>
       <br /><br />
@@ -23,6 +29,9 @@
                 label="Kehakaal(kg)"
                 class="align-center"
                 thumb-label="always"
+                thumb-color="lime darken-4"
+                color="lime darken-3"
+                track-color="lime lighten-1"
               >
               </v-slider>
             </v-col>
@@ -35,6 +44,9 @@
                 label="Pikkus(cm)"
                 class="align-center"
                 thumb-label="always"
+                color="lime darken-3"
+                thumb-color="lime darken-4"
+                track-color="lime lighten-1"
               >
               </v-slider>
             </v-col>

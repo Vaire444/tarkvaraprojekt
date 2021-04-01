@@ -1,109 +1,121 @@
 <template>
   <div cols="12" sm="6" class="wagecalculator">
     <v-card class="e4 mt-8" elevation="24" shaped outlined>
-      <v-card-title><h3>Palgakalkulaator</h3></v-card-title>
-      <v-card-title><b>Lähteandmed</b></v-card-title>
+      <v-card-title class="lime darken-2"
+        ><h3>Palgakalkulaator</h3></v-card-title
+      >
+      <v-card-title><b>Lähteandmed (2021)</b></v-card-title>
       <v-container fluid>
         <v-row>
           <v-col cols="12" sm="4">
-            <v-checkbox
-              v-model="ex4"
-              label="Tööandja kulu"
-              color="indigo"
-              value="indigo"
-              hide-details
-            ></v-checkbox>
-          </v-col>
-          <v-col cols="12" sm="4">
-            <v-checkbox
-              v-model="ex4"
-              label="Brutopalk"
-              color="indigo"
-              value="indigo"
-              hide-details
-            ></v-checkbox>
-          </v-col>
-          <v-col cols="12" sm="4">
-            <v-checkbox
-              v-model="ex4"
-              label="Netopalk"
-              color="indigo"
-              value="indigo"
-              hide-details
-            ></v-checkbox>
-          </v-col>
-
-          <v-col cols="12" sm="4">
-            <v-checkbox
-              v-model="ex4"
-              label=""
-              color="indigo"
-              value="indigo"
-              hide-details
-            ></v-checkbox>
+            <v-card-text>Brutopalk (€ kuus) </v-card-text>
           </v-col>
           <v-col cols="12" sm="4">
             <v-text-field
               class="pa-6 my-n4 pr-3 disabled"
-              label="Keskmine kütusekulu"
-              dense
-              outlined
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" sm="4">
-            <v-select :items="items" label="Select"></v-select>
-          </v-col>
-          <v-col cols="12" sm="4">
-            <v-checkbox
-              v-model="ex4"
-              label="Kütuse kogus"
-              color="indigo"
-              value="indigo"
-              hide-details
-            ></v-checkbox>
-          </v-col>
-          <v-col cols="12" sm="4">
-            <v-text-field
-              class="pa-6 my-n4 pr-3"
-              label="Kütuse kogus"
-              dense
-              outlined
-            ></v-text-field>
-          </v-col>
-          <v-col cols="12" sm="4">
-            <v-select :items="items" label="Select"></v-select>
-          </v-col>
-          <v-col cols="12" sm="4">
-            <v-checkbox
-              v-model="ex4"
-              label="Kütuseühiku hind"
-              color="indigo"
-              value="indigo"
-              hide-details
-            ></v-checkbox>
-          </v-col>
-          <v-col cols="12" sm="4">
-            <v-text-field
-              class="pa-6 my-n4 pr-3"
-              label="Kütuseühiku hind"
+              label="Sisesta brutopalk"
               dense
               outlined
             ></v-text-field>
           </v-col>
         </v-row>
-
-        <v-card-title><b>Tulemus</b></v-card-title>
         <v-row>
           <v-col cols="12" sm="4">
-            <v-card-text class="fs">Kütusekulu maksumus </v-card-text>
+            <v-card-text><h3>Mahaarvamised</h3> </v-card-text>
           </v-col>
+        </v-row>
+        <v-row>
           <v-col cols="12" sm="4">
-            <v-text-field
-              class="pa-6 my-n4 pr-3 disabled"
-              label="Kütusekulu maksumus"
-              dense
-              outlined
-            ></v-text-field>
+            <v-checkbox
+              v-model="ex4"
+              label="Kütuse kogus"
+              color="indigo"
+              value="indigo"
+              hide-details
+            ></v-checkbox>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" sm="4">
+            <v-checkbox
+              v-model="ex4"
+              label="Kütuse kogus"
+              color="indigo"
+              value="indigo"
+              hide-details
+            ></v-checkbox>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" sm="4">
+            <v-checkbox
+              v-model="ex4"
+              label="Kütuse kogus"
+              color="indigo"
+              value="indigo"
+              hide-details
+            ></v-checkbox>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" sm="4">
+            <v-checkbox
+              v-model="ex4"
+              label="Kütuse kogus"
+              color="indigo"
+              value="indigo"
+              hide-details
+            ></v-checkbox>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" sm="4" class="mb-4">
+            <v-checkbox
+              v-model="ex4"
+              label="Kütuse kogus"
+              color="indigo"
+              value="indigo"
+              hide-details
+            ></v-checkbox>
+          </v-col>
+        </v-row>
+        <v-data-table
+          :headers="headers"
+          :items="desserts"
+          item-key="name"
+          hide-default-header
+          hide-default-footer
+          class="elevation-1"
+        ></v-data-table>
+
+        <hr />
+        <v-card-title class="lime lighten-3"><b>Tulemus</b></v-card-title>
+        <v-row>
+          <v-col cols="12" sm="16">
+            <v-card-text
+              >Tööandja kulu kokku (Palgafond) <b>{{ cost }} </b> €
+            </v-card-text>
+            <v-card-text
+              >Sotsiaalmaks <b>{{ cost }} </b> €
+            </v-card-text>
+            <v-card-text
+              >Kütusekulu maksumus on <b>{{ cost }} </b> €
+            </v-card-text>
+            <v-card-text
+              >Kütusekulu maksumus on <b>{{ cost }} </b> €
+            </v-card-text>
+            <v-card-text
+              >Kütusekulu maksumus on <b>{{ cost }} </b> €
+            </v-card-text>
+            <v-card-text
+              >Kütusekulu maksumus on <b>{{ cost }} </b> €
+            </v-card-text>
+            <v-card-text
+              >Kütusekulu maksumus on <b>{{ cost }} </b> €
+            </v-card-text>
+            <v-card-text class="mb-4"
+              >Kütusekulu maksumus on <b>{{ cost }} </b> €
+            </v-card-text>
           </v-col>
         </v-row>
       </v-container>
@@ -115,16 +127,59 @@
 export default {
   data: () => ({
     items: ["Foo", "Bar", "Fizz", "Buzz"],
+    headers: [
+      {
+        text: "Dessert (100g serving)",
+        align: "start",
+        value: "name",
+      },
+      { text: "Category", value: "category" },
+    ],
+    desserts: [
+      {
+        name: "Tööandja kulu kokku (Palgafond):",
+        category: "Salary",
+      },
+      {
+        name: "Sotsiaalmaks:",
+        category: "Ice cream",
+      },
+      {
+        name: "Töötuskindlustusmakse (tööandja):",
+        category: "Salary",
+      },
+      {
+        name: "Brutopalk:",
+        category: "Pastry",
+      },
+      {
+        name: "Kogumispension (II sammas)",
+        category: "Cookie",
+      },
+      {
+        name: "Täätuskindlustusmakse (töötaja)",
+        category: "Candy",
+      },
+      {
+        name: "Tulumaks",
+        category: "Candy",
+      },
+      {
+        name: "Netopalk",
+        category: "Toffee",
+      },
+    ],
   }),
 };
 </script>
 
 <style scoped>
 .e4 {
-  width: 800px;
+  width: 1200px;
   margin: auto;
 }
 .fs {
-  font-size: 18px;
+  font-size: 20px;
+  text-align: left;
 }
 </style>
