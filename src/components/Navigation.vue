@@ -52,7 +52,10 @@ export default {
         text: "Palgakalkulaator",
         route: "/wagecalculator",
       },
-      { icon: "mdi-clock", text: "Test", route: "/test" },
+
+      { icon: "mdi-clock", text: "test", route: "/test" },
+
+      { icon: "mdi-clock", text: "ChartPie", route: "/ChartPie" },
     ],
   }),
 
