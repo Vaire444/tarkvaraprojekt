@@ -1,14 +1,17 @@
 <template>
   <v-card class="e4 mt-8" elevation="24" shaped outlined>
-    <v-card-title class="lime darken-2"><h3>Palgakalkulaator</h3></v-card-title>
-    <v-card-title><b>Lähteandmed (2021)</b></v-card-title>
+    <v-card-title class="lime darken-2"
+      ><h3>Palgakalkulaator(2021)</h3></v-card-title
+    >
+    <v-card-title><b>Lähteandmed</b></v-card-title>
     <v-container fluid>
       <v-row>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" sm="3">
           <v-card-text>Brutopalk (€ kuus) </v-card-text>
         </v-col>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" sm="4">
           <v-text-field
+            type="number"
             class="pa-6 my-n4 pr-3 disabled"
             label="Sisesta brutopalk"
             dense
@@ -124,16 +127,23 @@
         </v-col>
       </v-row>
 
-      <ChartPie />
+      <div class="pie-shart">
+        <b-card title="Pie">
+          <b-card img-bottom>
+            <ChartPieBase :chart-data="chartData" />
+          </b-card>
+        </b-card>
+      </div>
     </v-container>
   </v-card>
 </template>
 
 <script>
-import ChartPie from "../components/ChartPie.vue";
+import ChartPieBase from "../components/ChartPieBase";
 export default {
-  components: { ChartPie },
+  components: { ChartPieBase },
   data: () => ({
+    chartData: null,
     wageFund: 0,
     socialTax: 0,
     unempInsCorp: 0,
@@ -158,34 +168,53 @@ export default {
       },
       {
         name: "Sotsiaalmaks:",
-        category: "this.socialTax",
+        category: 0,
       },
       {
         name: "Töötuskindlustusmakse (tööandja):",
-        category: "this.unempInsCorp",
+        category: 0,
       },
       {
         name: "Brutopalk:",
-        category: "Pastry",
+        category: 0,
       },
       {
         name: "Kogumispension (II sammas)",
-        category: "Cookie",
+        category: 0,
       },
       {
         name: "Täätuskindlustusmakse (töötaja)",
-        category: "Candy",
+        category: 0,
       },
       {
         name: "Tulumaks",
-        category: "Candy",
+        category: 0,
       },
       {
         name: "Netopalk",
-        category: "Toffee",
+        category: 0,
       },
     ],
   }),
+
+  mounted() {
+    this.fillData();
+  },
+
+  methods: {
+    fillData() {
+      this.chartData = {
+        labels: ["Foo", "Bar", "Baz", "Fiz"],
+        datasets: [
+          {
+            backgroundColor: ["#f36e60", "#ffdb3b", "#185190", "#00fe00"],
+            hoverBackgroundColor: ["#fbd2cd", "#fef5c9", "#d1e3f7"],
+            data: [10, 20, 50, 20],
+          },
+        ],
+      };
+    },
+  },
 };
 </script>
 

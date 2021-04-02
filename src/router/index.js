@@ -39,13 +39,6 @@ const routes = [
   },
 
   {
-    path: "/ChartPie",
-    name: "chartpie",
-    component: () =>
-      import(/* webpackChunkName: "chartpie" */ "../components/ChartPie"),
-  },
-
-  {
     path: "/about",
     name: "About",
     // route level code-splitting

@@ -54,8 +54,6 @@ export default {
       },
 
       { icon: "mdi-clock", text: "test", route: "/test" },
-
-      { icon: "mdi-clock", text: "ChartPie", route: "/ChartPie" },
     ],
   }),
 
