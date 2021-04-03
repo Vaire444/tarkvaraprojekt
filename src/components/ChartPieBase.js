@@ -9,13 +9,13 @@ export default {
     return {
       options: {
         scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
+          // yAxes: [
+          // {
+          //   ticks: {
+          //     beginAtZero: true,
+          // },
+          // },
+          // ],
         },
         responsive: true,
       },

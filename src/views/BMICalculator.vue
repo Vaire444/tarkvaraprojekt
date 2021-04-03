@@ -1,19 +1,19 @@
 <template>
   <div class="bmicalculator">
-    <v-card class="e4 mt-8 lime lighten-5" elevation="24" shaped outlined>
-      <v-card-title class="lime darken-2"
+    <v-card class="e4 mt-8" elevation="24" shaped outlined>
+      <v-card-title class="lime lighten-1"
         ><h3>KMI kalkulaator</h3></v-card-title
       >
       <v-responsive height="150px"
         ><v-card-text>
           <br />
-          <h2>
+          <h3>
             Sinu kehamassiindeks kaalu {{ weight }} kg ja pikkuse
             {{ height }} cm juures on {{ bmi }}
-          </h2>
+          </h3>
           <br />
 
-          <h2>{{ weightGroup }}</h2>
+          <h3>{{ weightGroup }}</h3>
         </v-card-text>
       </v-responsive>
       <br /><br />

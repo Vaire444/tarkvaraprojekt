@@ -6,7 +6,7 @@
         class="lime darken-3--text"
         @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon>
-      <v-toolbar-title class="lime darken-3--text">
+      <v-toolbar-title>
         <span>Kalku</span>
         <span class="font-weight-light">laator</span>
       </v-toolbar-title>
