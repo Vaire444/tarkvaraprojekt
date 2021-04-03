@@ -8,12 +8,12 @@
     <v-row>
       <v-col cols="12" sm="2">
         <v-text-field
-          v-model.number="brutoWage"
-          label="Sisesta siia oma nimi"
+          v-model.number="name"
+          label="Kirjuta siia oma nimi"
           dense
           outlined
         ></v-text-field>
-        <v-btn tile color="success" class="mt-n6"> Sisesta </v-btn>
+        <v-btn tile color="lime lighten-1" class="mt-n6"> Sisesta </v-btn>
       </v-col>
     </v-row>
     <!-- <v-row align="left" justify="space-around">
@@ -53,11 +53,11 @@ export default {
   },
   data: () => ({
     width: 2,
-    radius: 10,
-    padding: 8,
+    radius: 5,
+    padding: 4,
     lineCap: "round",
     gradient: gradients[5],
-    value: [0, 2, 5, 9, 5, 10, 3, 5, 0, 0, 1, 8, 2, 9, 0],
+    value: [0, 2, 5, 12, 5, 21, 3, 5, 0, 15, 1, 8, 3, 5, 0, 13, 1, 2, 7, 0],
     gradientDirection: "top",
     gradients,
     fill: false,

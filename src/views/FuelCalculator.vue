@@ -6,6 +6,19 @@
     <v-card-title class="lime lighten-5"><b>Lähteandmed</b></v-card-title>
     <v-container fluid>
       <v-row>
+        <v-col>
+          <p>
+            Sa arvutad:
+            <select v-model="selected" @change="calculateValues">
+              <option>Teekonna pikkust (km)</option>
+              <option>Keskmist kütusekulu (l/100km)</option>
+              <option>Kütuse kogust (l)</option>
+            </select>
+          </p>
+        </v-col>
+      </v-row>
+
+      <v-row>
         <v-col cols="12" sm="6">
           <v-text-field
             v-on:input="
@@ -82,29 +95,38 @@
   </v-card>
 </template>
 
+
 <script>
-// !!!!!!!!
-// dis = Distance Lenght (km)
-// avg = Average Fuel Consumption (l/100km)
-// amount = Fuel Amount (l)
-// cost = Fuel Total Cost (€)
-
-//Functions
-// f1 = calc Distance Lenght
-// f2 = Average Fuel Consumption
-// f3 = Fuel Amount
-// f4 = Fuel Total Cost
-// !!!!!!!!
-
 export default {
   name: "FuelCalculator",
   data: () => ({
+    isDisabledDistLenght: false,
+    isDisabledAverageAmount: false,
+    isDisabledLenghtFuelAmount: false,
+    checkDistance: false,
+    checkAvgFuelConsump: false,
+    checkFuelAmount: false,
     dis: 0,
     avg: 0,
     amount: 0,
     cost: 0,
     price: 0,
+    selected: "Teekonna pikkust (km)",
   }),
+
+  // !!!!!!!!
+  // dis = Distance Lenght (km)
+  // avg = Average Fuel Consumption (l/100km)
+  // amount = Fuel Amount (l)
+  // cost = Fuel Total Cost (€)
+
+  //Functions
+  // f1 = calc Distance Lenght
+  // f2 = Average Fuel Consumption
+  // f3 = Fuel Amount
+  // f4 = Fuel Total Cost
+  // !!!!!!!!
+
   methods: {
     calculateValues() {
       console.log("funktsioon algas");
@@ -149,11 +171,15 @@ export default {
     reset: function () {
       console.log("reset algas");
       return [
+        (this.checkDistance = false),
+        (this.checkAvgFuelConsump = false),
+        (this.checkFuelAmount = false),
         (this.dis = 0),
         (this.amount = 0),
         (this.avg = 0),
         (this.cost = 0),
         (this.price = 0),
+        (this.selected = "Teekonna pikkust (km)"),
       ];
     },
   },

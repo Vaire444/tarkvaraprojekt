@@ -11,7 +11,7 @@
         <span class="font-weight-light">laator</span>
       </v-toolbar-title>
     </v-app-bar>
-    <v-navigation-drawer app v-model="drawer" absolute temporary>
+    <v-navigation-drawer app v-model="drawer" temporary>
       <v-list nav dense>
         <v-list-item
           v-for="(link, i) in links"

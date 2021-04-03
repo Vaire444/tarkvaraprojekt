@@ -8,8 +8,8 @@
         ><v-card-text>
           <br />
           <h3>
-            Sinu kehamassiindeks kaalu {{ weight }} kg ja pikkuse
-            {{ height }} cm juures on {{ bmi }}
+            Hea {{ name }}, sinu kehamassiindeks kaalu {{ weight }} kg ja
+            pikkuse {{ height }} cm juures on {{ bmi }}
           </h3>
           <br />
 
@@ -65,6 +65,7 @@ export default {
     height: 0,
     bmi: 0,
     weightGroup: "",
+    name: "Sõber",
   }),
 
   computed: {},

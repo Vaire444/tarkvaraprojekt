@@ -1,31 +1,33 @@
 <template>
-  <v-card class="e4 mt-8" elevation="24" shaped outlined>
-    <v-card-title class="lime lighten-2"
-      ><h3>Palgakalkulaator(2021)</h3></v-card-title
-    >
-    <v-card-title class="lime lighten-5"><b>Lähteandmed</b></v-card-title>
-    <v-container fluid>
-      <!-- <v-row>
-        <v-col cols="12" sm="3">
-          <v-card-text>Brutopalk (€ kuus) </v-card-text>
-        </v-col>
-        <v-col cols="12" sm="4">
-          <v-text-field
-            v-model.number="brutoWage"
-            type="number"
-            class="pa-6 my-n4 pr-3"
-            label="Sisesta brutopalk"
-            dense
-            outlined
-          ></v-text-field>
-        </v-col>
-      </v-row>-->
-      <v-row>
-        <!-- <v-col cols="12" sm="6"> -->
-        <v-card-text><h3>Mahaarvamised</h3> </v-card-text>
-        <!-- </v-col> -->
-      </v-row>
-      <!-- <v-row>
+  <v-container>
+    <v-card class="e4 mt-6 mb-8" elevation="24" shaped outlined>
+      <v-card-title class="lime lighten-2"
+        ><h3>Palgakalkulaator(2021)</h3></v-card-title
+      >
+      <v-card-title class="lime lighten-5"><b>Lähteandmed</b></v-card-title>
+      <v-container fluid>
+        <v-row>
+          <v-col cols="12" sm="12">
+            <v-card-text>Brutopalk (€ kuus) </v-card-text>
+          </v-col>
+          <v-col cols="12" sm="3">
+            <v-text-field
+              v-model.number="brutoWageSum"
+              type="number"
+              class="mt-n6"
+              label="Sisesta brutopalk"
+              dense
+              outlined
+              v-on:input="wageCalc()"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="mt-n6 mb-2">
+          <!-- <v-col cols="12" sm="6"> -->
+          <v-card-text><h3>Mahaarvamised</h3> </v-card-text>
+          <!-- </v-col> -->
+        </v-row>
+        <!-- <v-row>
         <v-col cols="12" sm="6">
           <v-checkbox
             v-on:input="
@@ -44,7 +46,7 @@
           ></v-checkbox>
         </v-col>
       </v-row> -->
-      <!-- <v-row>
+        <!-- <v-row>
         <v-col cols="12" sm="6">
           <v-checkbox
             v-model="netoWage"
@@ -77,9 +79,9 @@
           ></v-checkbox>
         </v-col>
       </v-row> -->
-      <v-col cols="12" sm="4">
-        <v-row>
-          <!-- <v-col cols="12" class="mb-4">
+        <v-col cols="12" sm="8" class="mb-n4">
+          <v-row>
+            <!-- <v-col cols="12" class="mb-4">
           <v-checkbox
             v-model="netoWage"
             label="Kogumispension (II sammas)"
@@ -88,20 +90,21 @@
             hide-details
           ></v-checkbox>
         </v-col> -->
-          <v-checkbox
-            v-for="(el, index) in checkboxes"
-            :key="index"
-            v-model="checkbox[index]"
-            :value="el"
-            :label="el"
-            @change="
-              onChange(el, index);
-              valueChanged($event, index);
-            "
-          ></v-checkbox>
-        </v-row>
-      </v-col>
-      <!-- <v-data-table
+            <v-checkbox
+              class="mt-n2"
+              v-for="(el, index) in checkboxes"
+              :key="index"
+              v-model="checkbox[index]"
+              :value="el"
+              :label="el"
+              @change="
+                onChange(el, index);
+                valueChanged($event, index);
+              "
+            ></v-checkbox>
+          </v-row>
+        </v-col>
+        <!-- <v-data-table
         :headers="headers"
         :items="desserts"
         item-key="name"
@@ -109,49 +112,51 @@
         hide-default-footer
         class="elevation-1"
       ></v-data-table> -->
-    </v-container>
+      </v-container>
 
-    <v-card-title class="lime lighten-5"><b>Tulemus</b></v-card-title>
-    <v-container>
-      <v-row>
-        <v-col cols="12" sm="6">
-          <v-card-text
-            >Tööandja kulu kokku (Palgafond): <b>{{ wageFund }} </b> €
-          </v-card-text>
-          <v-card-text
-            >Sotsiaalmaks: <b>{{ socialTax }} </b> €
-          </v-card-text>
-          <v-card-text
-            >Töötuskindlustusmakse (tööandja): <b>{{ unempInsCorp }} </b> €
-          </v-card-text>
-          <v-card-text
-            >Brutopalk: <b>{{ brutoWage }} </b> €
-          </v-card-text>
-          <v-card-text
-            >Kogumispension (II sammas): <b>{{ pension }} </b> €
-          </v-card-text>
-          <v-card-text
-            >Täätuskindlustusmakse (töötaja): <b>{{ unempInsWorker }} </b> €
-          </v-card-text>
-          <v-card-text
-            >Tulumaks: <b>{{ incomeTax }} </b> €
-          </v-card-text>
-          <v-card-text class="mb-4"
-            >Netopalk: <b>{{ netoWage }} </b> €
-          </v-card-text>
-        </v-col>
-        <v-col cols="12" sm="6">
-          <div class="pie-shart">
-            <v-card title="Pie">
-              <v-card img-bottom>
-                <ChartPieBase :chart-data="chartData" />
+      <v-card-title class="lime lighten-5"><b>Tulemus</b></v-card-title>
+      <v-container>
+        <v-row>
+          <v-col cols="12" sm="6">
+            <v-card-text class="mb-n4"
+              >Tööandja kulu kokku (Palgafond): <b>{{ wageFundSum }} </b> €
+            </v-card-text>
+            <v-card-text class="mb-n4"
+              >Sotsiaalmaks: <b>{{ socialTaxSum }} </b> €
+            </v-card-text>
+            <v-card-text class="mb-n4"
+              >Töötuskindlustusmakse (tööandja): <b>{{ unempInsCorpSum }} </b> €
+            </v-card-text>
+            <v-card-text class="mb-n4"
+              >Brutopalk: <b>{{ brutoWageSum }} </b> €
+            </v-card-text>
+            <v-card-text class="mb-n4"
+              >Kogumispension (II sammas): <b>{{ pensionSum }} </b> €
+            </v-card-text>
+            <v-card-text class="mb-n4"
+              >Täätuskindlustusmakse (töötaja):
+              <b>{{ unempInsWorkerSum }} </b> €
+            </v-card-text>
+            <v-card-text class="mb-n4"
+              >Tulumaks: <b>{{ incomeTaxSum }} </b> €
+            </v-card-text>
+            <v-card-text class="mb-4"
+              >Netopalk: <b>{{ netoWageSum }} </b> €
+            </v-card-text>
+          </v-col>
+          <v-col cols="12" sm="6">
+            <div class="pie-shart">
+              <v-card title="Pie">
+                <v-card img-bottom>
+                  <ChartPieBase :chart-data="chartData" />
+                </v-card>
               </v-card>
-            </v-card>
-          </div>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-card>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card>
+  </v-container>
 </template>
 
 <script>
@@ -160,18 +165,25 @@ export default {
   components: { ChartPieBase },
   data: () => ({
     chartData: null,
-    wageFund: 100,
-    socialTax: 100,
-    unempInsCorp: 70,
-    brutoWage: 7000,
-    pension: 20,
-    unempInsWorker: 20,
-    incomeTax: 20,
-    netoWage: 7000,
+    wageFundSum: 0,
+    taxFreeSum: 0,
+    minSocialTaxSum: 0,
+    socialTaxSum: 0,
+    unempInsCorpSum: 0,
+    brutoWageSum: 0,
+    pensionSum: 0,
+    unempInsWorkerSum: 0,
+    incomeTaxSum: 0,
+    netoWageSum: 0,
+    socialTax: 0.33,
+    unempInsCorpTax: 0,
+    pensionTax: 0,
+    unempInsWorkerTax: 0,
+    incomeTax: 0.2,
     checkboxes: [
       "Arvesta sotsiaalmaksu min. kuumäära alusel",
       "Arvesta maksuvaba tulu (500€ kuus)",
-      "Tööandja töötskindlusutse makse (0,8%)",
+      "Tööandja töötskindlustuse makse (0,8%)",
       "Töötaja (kindlustatu) töötuskindlustusmakse (1.6%)",
       "Kogumispension (II sammas)",
     ],
@@ -241,26 +253,36 @@ export default {
 
     onChange(val, i) {
       console.log("funktsioon algas");
-      console.log(val, i, this.checkbox);
-      if (val === null || val.length === 0) {
+      console.log(i, this.checkbox);
+      if (val == null || val.length == 0) {
         // Custom checks in this
-        console.log("Unchecked");
       } else {
         console.log("Checked");
-        if (i == 0) {
-          console.log("tegemist on esimese väärtusega");
-        } else if (i == 1) {
-          console.log("tegemist on teise väärtusega");
-        } else if (i == 1) {
-          console.log("tegemist on kolmanda väärtusega");
-        } else {
-          console.log("tegemist on neljanda väärtusega");
-        }
       }
     },
     valueChanged() {
       console.log("väärtus muudetud");
       console.log(this.checkbox);
+    },
+
+    wageCalc() {
+      return [
+        (this.socialTaxSum = this.brutoWageSum * this.socialTax),
+        (this.incomeTaxSum = this.brutoWageSum * this.incomeTax),
+        (this.unempInsCorpSum = this.brutoWageSum * this.unempInsCorpTax),
+        (this.pensionSum = this.brutoWageSum * this.pensionTax),
+        (this.unempInsWorkerSum = this.brutoWageSum * this.unempInsWorkerTax),
+        (this.incomeTaxSum =
+          (this.brutoWageSum - this.pensionSum - this.unempInsWorkerSum) *
+          this.incomeTax),
+        (this.wageFundSum =
+          this.brutoWageSum + this.socialTaxSum + this.unempInsCorpSum),
+        (this.netoWageSum =
+          this.brutoWageSum -
+          this.pensionSum -
+          this.unempInsWorkerSum -
+          this.incomeTaxSum),
+      ];
     },
   },
 };
@@ -268,7 +290,7 @@ export default {
 
 <style scoped>
 .e4 {
-  width: 1600px;
+  width: 800px;
   margin: auto;
 }
 .fs {
