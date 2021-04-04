@@ -6,19 +6,18 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" sm="2">
+      <v-col cols="12" sm="3">
         <v-text-field
-          v-model.number="name"
           label="Kirjuta siia oma nimi"
           dense
           outlined
         ></v-text-field>
-        <v-btn tile color="lime lighten-1" class="mt-n6"> Sisesta </v-btn>
+        <v-btn tile color="lime lighten-1" class="mt-n6" v-model.number="name">
+          Sisesta
+        </v-btn>
       </v-col>
     </v-row>
-    <!-- <v-row align="left" justify="space-around">
-     
-    </v-row> -->
+    <v-row align="left" justify="space-around"> </v-row>
 
     <v-sparkline
       :value="value"
@@ -44,7 +43,7 @@ const gradients = [
   ["red", "orange", "yellow"],
   ["purple", "violet"],
   ["#00c6ff", "#F0F", "#FF0"],
-  ["#f72047", "#ffd200", "#1feaea"],
+  ["#F9A825", "#AEEA00", "#827717"],
 ];
 export default {
   name: "HelloWorld",

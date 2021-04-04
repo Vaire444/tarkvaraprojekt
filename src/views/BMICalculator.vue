@@ -65,7 +65,7 @@ export default {
     height: 0,
     bmi: 0,
     weightGroup: "",
-    name: "Sõber",
+    name: "",
   }),
 
   computed: {},
@@ -110,6 +110,7 @@ export default {
     this.height = this.$store.getters.Height;
     this.bmi = this.$store.getters.bmi;
     this.weightGroup = this.$store.getters.weightGroup;
+    this.name = this.$store.getters.name;
   },
 };
 </script>
