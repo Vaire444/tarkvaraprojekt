@@ -114,7 +114,7 @@
 
 <script>
 export default {
-  name: "FuelCalculator",
+  name: "fuelcalculator",
   data: () => ({
     isDisabledDistLenght: false,
     isDisabledAverageAmount: true,
@@ -174,7 +174,7 @@ export default {
   margin: 1em auto;
 }
 .fs {
-  font-size: 20px;
+  font-size: 16px;
   text-align: left;
 }
 </style>

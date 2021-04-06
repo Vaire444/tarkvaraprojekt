@@ -101,6 +101,7 @@
 <script>
 import ChartPieBase from "../components/ChartPieBase";
 export default {
+  name: "wagecalculator",
   components: { ChartPieBase },
   data: () => ({
     chartData: null,
@@ -142,10 +143,10 @@ export default {
     fillData() {
       this.chartData = {
         labels: [
-          "Netopalk",
-          "Maksud(töötaja)",
-          "Maksud(tööandja)",
-          "Kogumispension",
+          "Netopalk %",
+          "Maksud(töötaja) %",
+          "Maksud(tööandja) %",
+          "Kogumispension %",
         ],
         datasets: [
           {
@@ -175,12 +176,6 @@ export default {
     },
 
     wageCalc() {
-      // if (i === 0 && val === null) {
-      //   sum = 8;
-      // } else {
-      //   sum = 10;
-      // }
-      console.log("wageCalc funktsioon algas");
       let taxSocialSum = this.brutoWageSum * this.socialTax;
       this.socialTaxSum = parseFloat(taxSocialSum.toFixed(2));
 
@@ -207,27 +202,8 @@ export default {
       // console.log(this.wageFundSum);
 
       let wageFundS = this.brutoWageSum + taxSocialSum + unempInsCorp;
-      // console.log(this.wageFundSum);
       this.wageFundSum = parseFloat(wageFundS.toFixed(2));
       // console.log(this.wageFundSum);
-
-      // return [
-      // (this.socialTaxSum = this.brutoWageSum * this.socialTax),
-      // (this.incomeTaxSum = this.brutoWageSum * this.incomeTax),
-      // (this.unempInsCorpSum = this.brutoWageSum * this.unempInsCorpTax),
-      // (this.pensionSum = this.brutoWageSum * this.pensionTax),
-      // (this.unempInsWorkerSum = this.brutoWageSum * this.unempInsWorkerTax),
-      // (this.incomeTaxSum =
-      //   (this.brutoWageSum - this.pensionSum - this.unempInsWorkerSum) *
-      //   this.incomeTax),
-      // (this.wageFundSum =
-      //   this.brutoWageSum + this.socialTaxSum + this.unempInsCorpSum),
-      // (this.netoWageSum =
-      //   this.brutoWageSum -
-      //   this.pensionSum -
-      //   this.unempInsWorkerSum -
-      //   this.incomeTaxSum),
-      // ];
     },
     updateChart() {
       let sum2 =
@@ -255,10 +231,7 @@ export default {
   width: 800px;
   margin: auto;
 }
-.fs {
-  font-size: 20px;
-  text-align: left;
-}
+
 .pie-shart {
   width: 270px;
   height: auto;

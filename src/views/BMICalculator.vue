@@ -8,8 +8,8 @@
         ><v-card-text>
           <br />
           <h3>
-            Hea {{ name }}, sinu kehamassiindeks kaalu {{ weight }} kg ja
-            pikkuse {{ height }} cm juures on {{ bmi }}
+            Sinu kehamassiindeks kaalu {{ weight }} kg ja pikkuse
+            {{ height }} cm juures on {{ bmi }}
           </h3>
           <br />
 
@@ -59,16 +59,13 @@
 
 <script>
 export default {
-  name: "BMICalculator",
+  name: "bmicalculator",
   data: () => ({
-    weight: 0,
-    height: 0,
-    bmi: 0,
-    weightGroup: "",
-    name: "",
+    weight: 50,
+    height: 150,
+    bmi: 22.22,
+    weightGroup: "Oled normaalkaalus",
   }),
-
-  computed: {},
 
   methods: {
     bmiCalc() {
@@ -103,14 +100,6 @@ export default {
         return (this.weightGroup = "Sul on tõsine alakaal");
       }
     },
-  },
-
-  mounted() {
-    this.weight = this.$store.getters.Weight;
-    this.height = this.$store.getters.Height;
-    this.bmi = this.$store.getters.bmi;
-    this.weightGroup = this.$store.getters.weightGroup;
-    this.name = this.$store.getters.name;
   },
 };
 </script>

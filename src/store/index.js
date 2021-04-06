@@ -5,32 +5,24 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    Weight: 50,
-    Height: 150,
-    bmi: 22.22,
-    weightGroup: "Oled nomaalkaalus",
+    name: "Sõber",
   },
   mutations: {
-    setWeightValue(state, payload) {
-      state.Weight = payload;
-    },
-    setHeightValue(state, payload) {
-      state.Height = payload;
+    setName(state, payload) {
+      state.name = payload;
     },
   },
   actions: {
-    setWeightValue({ commit }) {
-      commit("Weight");
-    },
-    setHeightValue({ commit }) {
-      commit("Height");
+    setName({ commit }) {
+      commit("setName");
     },
   },
   modules: {},
-  getters: {
-    Weight: (state) => state.Weight,
-    Height: (state) => state.Height,
-    bmi: (state) => state.bmi,
-    weightGroup: (state) => state.weightGroup,
-  },
+  // getters: {
+  //   Weight: (state) => state.Weight,
+  //   Height: (state) => state.Height,
+  //   bmi: (state) => state.bmi,
+  //   weightGroup: (state) => state.weightGroup,
+  //   name: (state) => state.name,
+  // },
 });
