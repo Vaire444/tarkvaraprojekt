@@ -52,8 +52,6 @@ export default {
         text: "Palgakalkulaator",
         route: "/wagecalculator",
       },
-
-      { icon: "mdi-clock", text: "test", route: "/test" },
     ],
   }),
 
