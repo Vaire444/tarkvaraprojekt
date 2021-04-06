@@ -32,11 +32,6 @@ const routes = [
         /* webpackChunkName: "fuelcalkulator" */ "../views/FuelCalculator"
       ),
   },
-  {
-    path: "/test",
-    name: "test",
-    component: () => import(/* webpackChunkName: "test" */ "../views/test"),
-  },
 
   {
     path: "/about",
