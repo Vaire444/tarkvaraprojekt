@@ -27,30 +27,59 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <!-- <v-row class="mt-n6 mb-2">
+        <v-row class="mt-n6 mb-2">
           <v-card-text><h3>Mahaarvamised</h3> </v-card-text>
-        </v-row> -->
-
-        <!-- <v-col cols="12" sm="8" class="mb-n4">
-          <v-row>
-
-            <v-checkbox
-            name: isChecked
-              class="mt-n2"
-              v-for="(el, index) in checkboxes"
-              :key="index"
-              v-model="checkbox[index]"
-              :value="el"
-              :label="el"
-              
-              @change="
-                onChange(el, index);
-                valueChanged($event, index);
-                wageCalc($event, index);           
-              "
-            ></v-checkbox>
-          </v-row>
-        </v-col> -->
+        </v-row>
+        <v-checkbox
+          class="mt-n2 mb-2"
+          v-model="checkbox1"
+          label="Arvesta sotsiaalmaksu min. kuumäära alusel"
+          @change="
+            wageCalc();
+            updateChart();
+            fillData();
+          "
+        ></v-checkbox>
+        <v-checkbox
+          class="mt-n6 mb-2"
+          v-model="checkbox2"
+          label="Arvesta maksuvaba tulu (500€ kuus)"
+          @change="
+            wageCalc();
+            updateChart();
+            fillData();
+          "
+        ></v-checkbox>
+        <v-checkbox
+          class="mt-n6 mb-2"
+          v-model="checkbox3"
+          label="Tööandja töötskindlustuse makse (0,8%)"
+          @change="
+            wageCalc();
+            updateChart();
+            fillData();
+          "
+        ></v-checkbox>
+        <v-checkbox
+          class="mt-n6 mb-2"
+          v-model="checkbox4"
+          label="Töötaja (kindlustatu) töötuskindlustusmakse (1.6%)"
+          @change="
+            wageCalc();
+            updateChart();
+            fillData();
+          "
+        ></v-checkbox>
+        <v-checkbox
+          class="mt-n6 mb-2"
+          v-model="checkbox5"
+          label="Kogumispension (II sammas)"
+          @change="
+            wageCalc();
+            updateChart();
+            fillData();
+          "
+        ></v-checkbox>
       </v-container>
 
       <v-card-title class="lime lighten-5"><b>Tulemus</b></v-card-title>
@@ -99,7 +128,7 @@
 </template>
 
 <script>
-import ChartPieBase from "../components/ChartPieBase";
+import ChartPieBase from "./ChartPieBase";
 export default {
   name: "wagecalculator",
   components: { ChartPieBase },
@@ -124,15 +153,11 @@ export default {
     sum2: 10,
     sum3: 11,
     sum4: 2,
-    checkboxes: [
-      "Arvesta sotsiaalmaksu min. kuumäära alusel",
-      "Arvesta maksuvaba tulu (500€ kuus)",
-      "Tööandja töötskindlustuse makse (0,8%)",
-      "Töötaja (kindlustatu) töötuskindlustusmakse (1.6%)",
-      "Kogumispension (II sammas)",
-    ],
-    checkbox: [],
-    checked: [],
+    checkbox1: false,
+    checkbox2: false,
+    checkbox3: false,
+    checkbox4: false,
+    checkbox5: false,
   }),
 
   mounted() {
@@ -158,52 +183,83 @@ export default {
       };
     },
 
-    onChange(val, i) {
-      console.log("funktsioon algas");
-      console.log(i, this.checkbox);
-      if (val == null || val.length == 0) {
-        console.log("Prrr");
-        // Custom checks in this
-      } else {
-        console.log("Checked");
-      }
-    },
-    valueChanged(val, i) {
-      console.log(i);
-      console.log(val);
-      console.log("väärtus muudetud");
-      console.log(this.checkbox);
-    },
-
     wageCalc() {
       let taxSocialSum = this.brutoWageSum * this.socialTax;
-      this.socialTaxSum = parseFloat(taxSocialSum.toFixed(2));
-
       let pension = this.brutoWageSum * this.pensionTax;
-      this.pensionSum = parseFloat(pension.toFixed(2));
-      // console.log(this.pensionSum);
-
       let unempInsCorp = this.brutoWageSum * this.unempInsCorpTax;
-      this.unempInsCorpSum = parseFloat(unempInsCorp.toFixed(2));
-      // console.log(this.unempInsCorpSum);
-
       let unempInsWorker = this.brutoWageSum * this.unempInsWorkerTax;
 
-      this.unempInsWorkerSum = parseFloat(unempInsWorker.toFixed(2));
-      // console.log(this.unempInsWorkerSum);
+      //Sotsiaalmaksu arvutus min. kuumaksu alusel
+      if (this.checkbox1 == true) {
+        if (taxSocialSum <= 192.72) {
+          taxSocialSum = 192.72;
+          this.socialTaxSum = parseFloat(taxSocialSum.toFixed(2));
+        } else {
+          this.socialTaxSum = parseFloat(taxSocialSum.toFixed(2));
+        }
+      } else {
+        this.socialTaxSum = parseFloat(taxSocialSum.toFixed(2));
+      }
+      // Kogumispensioni arvutus
+      if (this.checkbox5 == true) {
+        this.pensionSum = parseFloat(pension.toFixed(2));
+      } else {
+        pension = 0;
+        this.pensionSum = 0;
+      }
 
-      let incomeSum =
+      // Töötuskindlustusmakse arutus, tööandja
+      if (this.checkbox3 == true) {
+        this.unempInsCorpSum = parseFloat(unempInsCorp.toFixed(2));
+      } else {
+        unempInsCorp = 0;
+        this.unempInsCorpSum = 0;
+      }
+
+      // Töötuskindlustusmakse arutus, töötaja
+      if (this.checkbox4 == true) {
+        this.unempInsWorkerSum = parseFloat(unempInsWorker.toFixed(2));
+      } else {
+        unempInsWorker = 0;
+        this.unempInsWorkerSum = 0;
+      }
+
+      // maksuvaba tulu arvutamine
+      let yearIncome = (this.brutoWageSum - pension - unempInsWorker) * 12;
+      let incomeTaxSumCalc =
         (this.brutoWageSum - pension - unempInsWorker) * this.incomeTax;
-      this.incomeTaxSum = parseFloat(incomeSum.toFixed(2));
-      // console.log(this.incomeTaxSum);
 
-      let netoWage = this.brutoWageSum - pension - unempInsWorker - incomeSum;
+      if (this.checkbox2 == true) {
+        if (yearIncome <= 14400) {
+          if (yearIncome <= 6000) {
+            incomeTaxSumCalc = 0;
+            this.incomeTaxSum = 0;
+          } else {
+            incomeTaxSumCalc =
+              (((this.brutoWageSum - pension - unempInsWorker) * 12 - 6000) /
+                12) *
+              this.incomeTax;
+
+            this.incomeTaxSum = parseFloat(incomeTaxSumCalc.toFixed(2));
+          }
+        } else if (yearIncome >= 25200) {
+          this.incomeTaxSum = parseFloat(incomeTaxSumCalc.toFixed(2));
+        } else {
+          incomeTaxSumCalc =
+            (6000 - (6000 / 10800) * (yearIncome - 14400)) / 12;
+
+          this.incomeTaxSum = parseFloat(incomeTaxSumCalc.toFixed(2));
+        }
+      } else {
+        this.incomeTaxSum = parseFloat(incomeTaxSumCalc.toFixed(2));
+      }
+
+      let netoWage =
+        this.brutoWageSum - pension - unempInsWorker - incomeTaxSumCalc;
       this.netoWageSum = parseFloat(netoWage.toFixed(2));
-      // console.log(this.wageFundSum);
 
       let wageFundS = this.brutoWageSum + taxSocialSum + unempInsCorp;
-      this.wageFundSum = parseFloat(wageFundS.toFixed(2));
-      // console.log(this.wageFundSum);
+      this.wageFundSum = parseFloat(wageFundS).toFixed(2);
     },
     updateChart() {
       let sum2 =
@@ -231,7 +287,6 @@ export default {
   width: 800px;
   margin: auto;
 }
-
 .pie-shart {
   width: 270px;
   height: auto;

@@ -14,14 +14,16 @@ const routes = [
     path: "/bmicalculator",
     name: "bmicalculator",
     component: () =>
-      import(/* webpackChunkName: "bmicalculator" */ "../views/BMICalculator"),
+      import(
+        /* webpackChunkName: "bmicalculator" */ "../components/BMICalculator"
+      ),
   },
   {
     path: "/wagecalculator",
     name: "wagecalculator",
     component: () =>
       import(
-        /* webpackChunkName: "wagecalculator" */ "../views/WageCalculator"
+        /* webpackChunkName: "wagecalculator" */ "../components/WageCalculator"
       ),
   },
   {
@@ -29,7 +31,7 @@ const routes = [
     name: "fuelcalculator",
     component: () =>
       import(
-        /* webpackChunkName: "fuelcalkulator" */ "../views/FuelCalculator"
+        /* webpackChunkName: "fuelcalkulator" */ "../components/FuelCalculator"
       ),
   },
 
