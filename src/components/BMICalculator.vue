@@ -1,10 +1,10 @@
 <template>
   <div class="bmicalculator">
     <v-card class="e4 mt-8" elevation="24" shaped outlined>
-      <v-card-title class="lime lighten-1"
+      <v-card-title class="lime lighten-2"
         ><h3>KMI kalkulaator</h3></v-card-title
       >
-      <v-responsive height="150px"
+      <v-responsive height="120px"
         ><v-card-text>
           <br />
           <h3>
@@ -23,7 +23,7 @@
             <v-col cols="12">
               <v-slider
                 v-model="weight"
-                v-on:change="bmiCalc"
+                v-on:change="bmiCalc(height, weight)"
                 :min="25"
                 :max="255"
                 label="Kehakaal(kg)"
@@ -38,7 +38,7 @@
             <v-col cols="12">
               <v-slider
                 v-model="height"
-                v-on:change="bmiCalc"
+                v-on:change="bmiCalc(height, weight)"
                 :min="25"
                 :max="255"
                 label="Pikkus(cm)"
@@ -68,9 +68,8 @@ export default {
   }),
 
   methods: {
-    bmiCalc() {
-      let totalKMI =
-        parseFloat(this.weight) / Math.pow(parseFloat(this.height) / 100, 2);
+    bmiCalc(height, weight) {
+      let totalKMI = parseFloat(weight) / Math.pow(parseFloat(height) / 100, 2);
 
       let bmi = totalKMI.toFixed(2);
       this.bmi = bmi;

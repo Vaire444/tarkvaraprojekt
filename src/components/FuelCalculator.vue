@@ -1,5 +1,5 @@
 <template>
-  <v-card class="e4 mt-8 mb-8" elevation="24" shaped outlined>
+  <v-card class="e4 mt-8" elevation="24" shaped outlined>
     <v-card-title class="lime lighten-2"
       ><h3>Kütusekulu kalkulaator</h3>
     </v-card-title>
@@ -41,7 +41,10 @@
         <v-col cols="12" sm="6">
           <v-text-field
             :disabled="!isDisabledDistLenght"
-            v-on:input="fuelCalc()"
+            v-on:input="
+              fuelCalc();
+              f4();
+            "
             :min="0"
             type="number"
             v-model.number="dis"
@@ -54,7 +57,10 @@
         <v-col cols="12" sm="6">
           <v-text-field
             :disabled="!isDisabledAverageAmount"
-            v-on:input="fuelCalc()"
+            v-on:input="
+              fuelCalc();
+              f4();
+            "
             :min="0"
             :max="100"
             type="number"
@@ -96,14 +102,14 @@
     <v-container fluid>
       <v-row>
         <v-col cols="12" sm="6">
-          <v-card-text class="fs mb-4"
+          <v-card-text class="fs mb-2"
             >Kütusekulu maksumus on <b> {{ cost }} </b> (€)
           </v-card-text>
         </v-col>
       </v-row>
-
-      <v-row justify="end">
-        <v-btn class="mr-6 mb-1 mt-1" v-on:click="reset()">
+      <hr />
+      <v-row justify="start">
+        <v-btn small class="ml-2 mb-2 mt-5" v-on:click="reset()">
           Lähtesta andmed
         </v-btn>
       </v-row>
@@ -174,7 +180,7 @@ export default {
   margin: 1em auto;
 }
 .fs {
-  font-size: 16px;
+  font-size: 17px;
   text-align: left;
 }
 </style>

@@ -1,130 +1,127 @@
 <template>
-  <v-container>
-    <v-card class="e4 mt-6 mb-8" elevation="24" shaped outlined>
-      <v-card-title class="lime lighten-2"
-        ><h3>Palgakalkulaator(2021)</h3></v-card-title
-      >
-      <v-card-title class="lime lighten-5"><b>Lähteandmed</b></v-card-title>
-      <v-container fluid>
-        <v-row>
-          <v-col cols="12" sm="12">
-            <v-card-text>Brutopalk (€ kuus) </v-card-text>
-          </v-col>
-          <v-col cols="12" sm="3">
-            <v-text-field
-              v-model.number="brutoWageSum"
-              type="number"
-              class="mt-n6"
-              label="Sisesta brutopalk"
-              :min="0"
-              dense
-              outlined
-              v-on:input="
-                wageCalc();
-                updateChart();
-                fillData();
-              "
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row class="mt-n6 mb-2">
-          <v-card-text><h3>Mahaarvamised</h3> </v-card-text>
-        </v-row>
-        <v-checkbox
-          class="mt-n2 mb-2"
-          v-model="checkbox1"
-          label="Arvesta sotsiaalmaksu min. kuumäära alusel"
-          @change="
-            wageCalc();
-            updateChart();
-            fillData();
-          "
-        ></v-checkbox>
-        <v-checkbox
-          class="mt-n6 mb-2"
-          v-model="checkbox2"
-          label="Arvesta maksuvaba tulu (500€ kuus)"
-          @change="
-            wageCalc();
-            updateChart();
-            fillData();
-          "
-        ></v-checkbox>
-        <v-checkbox
-          class="mt-n6 mb-2"
-          v-model="checkbox3"
-          label="Tööandja töötskindlustuse makse (0,8%)"
-          @change="
-            wageCalc();
-            updateChart();
-            fillData();
-          "
-        ></v-checkbox>
-        <v-checkbox
-          class="mt-n6 mb-2"
-          v-model="checkbox4"
-          label="Töötaja (kindlustatu) töötuskindlustusmakse (1.6%)"
-          @change="
-            wageCalc();
-            updateChart();
-            fillData();
-          "
-        ></v-checkbox>
-        <v-checkbox
-          class="mt-n6 mb-2"
-          v-model="checkbox5"
-          label="Kogumispension (II sammas)"
-          @change="
-            wageCalc();
-            updateChart();
-            fillData();
-          "
-        ></v-checkbox>
-      </v-container>
+  <v-card class="e4 mt-8" elevation="24" shaped outlined>
+    <v-card-title class="lime lighten-2"
+      ><h3>Palgakalkulaator(2021)</h3></v-card-title
+    >
+    <v-card-title class="lime lighten-5"><b>Lähteandmed</b></v-card-title>
+    <v-container fluid>
+      <v-row>
+        <v-col cols="12" sm="12">
+          <v-card-text>Brutopalk (€ kuus) </v-card-text>
+        </v-col>
+        <v-col cols="12" sm="3">
+          <v-text-field
+            v-model.number="brutoWageSum"
+            type="number"
+            class="mt-n6"
+            label="Sisesta brutopalk"
+            :min="0"
+            dense
+            outlined
+            v-on:input="
+              wageCalc();
+              updateChart();
+              fillData();
+            "
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row class="mt-n6 mb-2">
+        <v-card-text><h3>Mahaarvamised</h3> </v-card-text>
+      </v-row>
+      <v-checkbox
+        class="mt-n2 mb-2"
+        v-model="checkbox1"
+        label="Arvesta sotsiaalmaksu min. kuumäära alusel"
+        @change="
+          wageCalc();
+          updateChart();
+          fillData();
+        "
+      ></v-checkbox>
+      <v-checkbox
+        class="mt-n6 mb-2"
+        v-model="checkbox2"
+        label="Arvesta maksuvaba tulu (500€ kuus)"
+        @change="
+          wageCalc();
+          updateChart();
+          fillData();
+        "
+      ></v-checkbox>
+      <v-checkbox
+        class="mt-n6 mb-2"
+        v-model="checkbox3"
+        label="Tööandja töötskindlustuse makse (0,8%)"
+        @change="
+          wageCalc();
+          updateChart();
+          fillData();
+        "
+      ></v-checkbox>
+      <v-checkbox
+        class="mt-n6 mb-2"
+        v-model="checkbox4"
+        label="Töötaja (kindlustatu) töötuskindlustusmakse (1.6%)"
+        @change="
+          wageCalc();
+          updateChart();
+          fillData();
+        "
+      ></v-checkbox>
+      <v-checkbox
+        class="mt-n6 mb-2"
+        v-model="checkbox5"
+        label="Kogumispension (II sammas)"
+        @change="
+          wageCalc();
+          updateChart();
+          fillData();
+        "
+      ></v-checkbox>
+    </v-container>
 
-      <v-card-title class="lime lighten-5"><b>Tulemus</b></v-card-title>
-      <v-container>
-        <v-row>
-          <v-col cols="12" sm="6">
-            <v-card-text class="mb-n4"
-              >Tööandja kulu kokku (Palgafond): <b>{{ wageFundSum }} </b> €
-            </v-card-text>
-            <v-card-text class="mb-n4"
-              >Sotsiaalmaks: <b>{{ socialTaxSum }} </b> €
-            </v-card-text>
-            <v-card-text class="mb-n4"
-              >Töötuskindlustusmakse (tööandja): <b>{{ unempInsCorpSum }} </b> €
-            </v-card-text>
-            <v-card-text class="mb-n4"
-              >Brutopalk: <b>{{ brutoWageSum }} </b> €
-            </v-card-text>
-            <v-card-text class="mb-n4"
-              >Kogumispension (II sammas): <b>{{ pensionSum }} </b> €
-            </v-card-text>
-            <v-card-text class="mb-n4"
-              >Töötuskindlustusmakse (töötaja):
-              <b>{{ unempInsWorkerSum }} </b> €
-            </v-card-text>
-            <v-card-text class="mb-n4"
-              >Tulumaks: <b>{{ incomeTaxSum }} </b> €
-            </v-card-text>
-            <v-card-text class="mb-4"
-              >Netopalk: <b>{{ netoWageSum }} </b> €
-            </v-card-text>
-          </v-col>
-          <v-col cols="12" sm="6" align="center">
-            <div class="pie-shart">
-              <v-card title="Pie">
-                <v-card img-bottom>
-                  <ChartPieBase :chart-data="chartData" />
-                </v-card>
+    <v-card-title class="lime lighten-5"><b>Tulemus</b></v-card-title>
+    <v-container>
+      <v-row>
+        <v-col cols="12" sm="6">
+          <v-card-text class="mb-n4 fs-14"
+            >Tööandja kulu kokku (Palgafond): <b>{{ wageFundSum }} </b> €
+          </v-card-text>
+          <v-card-text class="mb-n4 fs-14"
+            >Sotsiaalmaks: <b>{{ socialTaxSum }} </b> €
+          </v-card-text>
+          <v-card-text class="mb-n4 fs-14"
+            >Töötuskindlustusmakse (tööandja): <b>{{ unempInsCorpSum }} </b> €
+          </v-card-text>
+          <v-card-text class="mb-n4 fs-14"
+            >Brutopalk: <b>{{ brutoWageSum }} </b> €
+          </v-card-text>
+          <v-card-text class="mb-n4 fs-14"
+            >Kogumispension (II sammas): <b>{{ pensionSum }} </b> €
+          </v-card-text>
+          <v-card-text class="mb-n4 fs-14"
+            >Töötuskindlustusmakse (töötaja): <b>{{ unempInsWorkerSum }} </b> €
+          </v-card-text>
+          <v-card-text class="mb-n4 fs-14"
+            >Tulumaks: <b>{{ incomeTaxSum }} </b> €
+          </v-card-text>
+          <v-card-text class="mb-4 fs-14"
+            >Netopalk: <b>{{ netoWageSum }} </b> €
+          </v-card-text>
+        </v-col>
+        <v-col cols="12" sm="6" align="center">
+          <div class="pie-shart">
+            <v-card title="Pie">
+              <v-card img-bottom>
+                <ChartPieBase :chart-data="chartData" />
               </v-card>
-            </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card>
-  </v-container>
+            </v-card>
+          </div>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-card>
 </template>
 
 <script>
@@ -285,12 +282,15 @@ export default {
 <style scoped>
 .e4 {
   width: 800px;
-  margin: auto;
+  margin: 1em auto;
 }
 .pie-shart {
   width: 270px;
   height: auto;
   border-radius: 50%;
   border: 2px #827717;
+}
+.fs-14 {
+  font-size: 17px;
 }
 </style>
