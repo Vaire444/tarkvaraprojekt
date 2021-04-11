@@ -21,18 +21,19 @@
       auto-draw
     ></v-sparkline>
     <div>
-      <v-col cols="12" sm="3">
+      <v-col cols="12" sm="3" class="mt-8">
         <v-row>
           <v-text-field
             v-model="input"
             label="Siia kirjuta palun oma nimi"
             required
             v-if="!isHidden"
+            dense
           ></v-text-field>
 
           <v-btn
             small
-            class="mt-4 success"
+            class="success"
             v-if="!isHidden"
             @click="
               isHidden = true;
