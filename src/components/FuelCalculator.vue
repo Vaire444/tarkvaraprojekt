@@ -14,7 +14,7 @@
             v-model="picked"
             @change="fuelCalc()"
           />
-          <label for="one">Arvuta teekonna pikkust (km)</label>
+          <label for="one" class="fs-12">Arvuta teekonna pikkust (km)</label>
           <br />
           <input
             type="radio"
@@ -23,7 +23,9 @@
             v-model="picked"
             @change="fuelCalc()"
           />
-          <label for="two">Arvuta keskmist kütusekulu (l/100km)</label>
+          <label for="two" class="fs-12"
+            >Arvuta keskmist kütusekulu (l/100km)</label
+          >
           <br />
           <input
             type="radio"
@@ -32,7 +34,7 @@
             v-model="picked"
             @change="fuelCalc()"
           />
-          <label for="Three">Arvuta kütuse kogust (l)</label>
+          <label for="Three" class="fs-12">Arvuta kütuse kogust (l)</label>
           <br />
         </v-col>
       </v-row>
@@ -182,5 +184,8 @@ export default {
 .fs {
   font-size: 17px;
   text-align: left;
+}
+.fs-12 {
+  font-size: 14px;
 }
 </style>

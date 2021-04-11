@@ -8,7 +8,7 @@
         ><v-card-text>
           <br />
           <h3>
-            Sinu kehamassiindeks kaalu {{ weight }} kg ja pikkuse
+            {{ name }}, sinu kehamassiindeks kaalu {{ weight }} kg ja pikkuse
             {{ height }} cm juures on {{ bmi }}
           </h3>
           <br />
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "bmicalculator",
   data: () => ({
@@ -65,6 +66,10 @@ export default {
     height: 150,
     bmi: 22.22,
     weightGroup: "Oled normaalkaalus",
+  }),
+  computed: mapState({
+    name: (state) => state.name,
+    nameAlias: "name",
   }),
 
   methods: {

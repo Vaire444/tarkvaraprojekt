@@ -36,28 +36,28 @@ export default {
     drawer: false,
     group: null,
     links: [
-      { icon: "mdi-clock", text: "Avaleht", route: "/" },
+      { icon: "mdi-home-outline", text: "Avaleht", route: "/" },
       {
-        icon: "mdi-clock",
+        icon: "mdi-human",
         text: "Kehamassiindeksi kalkulaator",
         route: "/bmicalculator",
       },
       {
-        icon: "mdi-clock",
+        icon: "mdi-gas-station-outline",
         text: "Kütusekulu kalkulaator",
         route: "/fuelcalculator",
       },
       {
-        icon: "mdi-clock",
+        icon: "mdi-account-cash-outline",
         text: "Palgakalkulaator",
         route: "/wagecalculator",
       },
 
-      {
-        icon: "mdi-clock",
-        text: "About",
-        route: "/about",
-      },
+      // {
+      //   icon: "mdi-contacts-outline",
+      //   text: "About",
+      //   route: "/about",
+      // },
     ],
   }),
 
