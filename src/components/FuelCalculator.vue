@@ -43,7 +43,7 @@
             :disabled="!isDisabledDistLenght"
             v-on:input="
               fuelCalc();
-              f4();
+              f4(price, amount);
             "
             :min="0"
             type="number"
@@ -59,7 +59,7 @@
             :disabled="!isDisabledAverageAmount"
             v-on:input="
               fuelCalc();
-              f4();
+              f4(price, amount);
             "
             :min="0"
             :max="100"
@@ -75,7 +75,7 @@
             :disabled="!isDisabledLenghtFuelAmount"
             v-on:input="
               fuelCalc();
-              f4();
+              f4(price, amount);
             "
             :min="0"
             type="number"
@@ -87,7 +87,7 @@
 
         <v-col cols="12" sm="6">
           <v-text-field
-            v-on:input="f4()"
+            v-on:input="f4(price, amount)"
             :min="0"
             :max="100"
             type="number"
@@ -153,8 +153,8 @@ export default {
       }
     },
 
-    f4() {
-      return (this.cost = (this.price * this.amount).toFixed(2));
+    f4(price, amount) {
+      return (this.cost = (price * amount).toFixed(2));
     },
 
     reset: function () {
