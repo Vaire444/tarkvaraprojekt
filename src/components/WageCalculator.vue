@@ -222,7 +222,7 @@ export default {
       }
 
       // maksuvaba tulu arvutamine
-      let yearIncome = (this.brutoWageSum - pension - unempInsWorker) * 12;
+      let yearIncome = this.brutoWageSum * 12;
       let incomeTaxSumCalc =
         (this.brutoWageSum - pension - unempInsWorker) * this.incomeTax;
 
@@ -242,8 +242,14 @@ export default {
         } else if (yearIncome >= 25200) {
           this.incomeTaxSum = parseFloat(incomeTaxSumCalc.toFixed(2));
         } else {
-          incomeTaxSumCalc =
+          let incomeTaxFreeSumCalc1 =
             (6000 - (6000 / 10800) * (yearIncome - 14400)) / 12;
+          incomeTaxSumCalc =
+            (this.brutoWageSum -
+              pension -
+              unempInsWorker -
+              incomeTaxFreeSumCalc1) *
+            this.incomeTax;
 
           this.incomeTaxSum = parseFloat(incomeTaxSumCalc.toFixed(2));
         }
